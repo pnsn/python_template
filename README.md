@@ -1,5 +1,6 @@
 # python_template
 Generic python template for PNSN projects
+
 # Virtualenv
 System python should be avoided when possible and a project virtualenv should be used. By creating a virtualenv you can ensure the proper python version and depenencies will be scoped only to yoru project. 
 
@@ -90,7 +91,30 @@ python example.py
 deactivate
 </code></pre>
 
+# Dependencies
+All pip installed dependencies must be added to the requirements.txt file
+The cleanest way to do this is to create a virtualenv locally, pip install your needed files then
 
+`$: pip freeze > requirements.txt`
+
+Only do this if you are not using the system python, otherwise it will add all system packages to the file. 
+
+Otherwise one package per line
+
+`numpy==1.9.2`
+
+or if you want to allow patches but not minor releases
+
+`numpy=1.9.2,<1.10`
+
+Once the file is complete, you can check it in to git. 
+
+To build or update your dependencies
+
+`$: pip install -r requirements.txt`
+
+# WSGI webserver
+Running a WSGI webserver for a Flask or Django app is a bit challanging since you make Apache or Nginx aware of which python to use, and there are lots of SELinux rules. See PNSN wiki for more details. 
 
 
 
